@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
         result.setText(stringBuffer);
     }
 
+    public void queryFun(View view){
+        execQuery();
+    }
+
     public void insertFun(View view){
         ContentValues values = new ContentValues();
         values.put("cname", name.getText().toString());

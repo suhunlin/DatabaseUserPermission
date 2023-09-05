@@ -131,7 +131,17 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:text="Query"
+            android:textAllCaps="false"
+            android:layout_margin="3dp"
+            android:onClick="queryFun"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="Insert"
+            android:textAllCaps="false"
             android:layout_margin="3dp"
             android:onClick="insertFun"
             />
@@ -140,6 +150,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Update"
+            android:textAllCaps="false"
             android:layout_margin="3dp"
             android:onClick="updateFun"
             />
@@ -147,7 +158,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Delete"
+            android:text="del"
+            android:textAllCaps="false"
             android:layout_margin="3dp"
             android:onClick="deleteFun"
             />
