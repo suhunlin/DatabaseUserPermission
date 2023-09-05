@@ -3,6 +3,7 @@ package com.suhun.databaseuserpermission;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -64,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void insertFun(View view){
+        ContentValues values = new ContentValues();
+        values.put("cname", name.getText().toString());
+        values.put("ctel", tel.getText().toString());
+        values.put("cbirthday", birthday.getText().toString());
+        db.insert("cust", null, values);
         execQuery();
     }
 
