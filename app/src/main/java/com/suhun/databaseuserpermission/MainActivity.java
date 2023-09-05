@@ -3,6 +3,7 @@ package com.suhun.databaseuserpermission;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
@@ -48,15 +49,29 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void insertFun(View view){
+    private void execQuery(){
+        StringBuffer stringBuffer = new StringBuffer();
+        Cursor cursor = db.query("cust", null, null, null, null, null, null);
+        while(cursor.moveToNext()){
+            String cid = cursor.getString(cursor.getColumnIndexOrThrow("cid"));
+            String cname = cursor.getString(cursor.getColumnIndexOrThrow("cname"));
+            String ctel = cursor.getString(cursor.getColumnIndexOrThrow("ctel"));
+            String cbirthday = cursor.getString(cursor.getColumnIndexOrThrow("cbirthday"));
+            String cResult = String.format("%s:%s:%s:%s", cid, cname, ctel, cbirthday);
+            stringBuffer.append(cResult);
+        }
+        result.setText(stringBuffer);
+    }
 
+    public void insertFun(View view){
+        execQuery();
     }
 
     public void updateFun(View view){
-
+        execQuery();
     }
 
     public void deleteFun(View view){
-
+        execQuery();
     }
 }
