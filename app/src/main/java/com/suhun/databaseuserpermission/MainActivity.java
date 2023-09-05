@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private String tag = MainActivity.class.getSimpleName();
-    private TextView resultLog, birthday;
+    private TextView result, birthday;
     private EditText id, name, tel;
 
     @Override
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        resultLog = findViewById(R.id.lid_resultLog);
+        result = findViewById(R.id.lid_resultLog);
         id = findViewById(R.id.lid_idInput);
         name = findViewById(R.id.lid_nameInput);
         tel = findViewById(R.id.lid_telInput);
