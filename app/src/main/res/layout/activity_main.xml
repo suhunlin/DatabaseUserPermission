@@ -1,18 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
     <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Hello World!"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Custom Table"
+        android:textSize="26sp"
+        android:gravity="center_horizontal"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#ff0"/>
+    <TextView
+        android:id="@+id/lid_resultLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0f0"
+        android:text="Null"
+        android:textSize="16sp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/idTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignTop="@id/lid_idInput"
+            android:layout_alignBottom="@id/lid_idInput"
+            android:text="Id:"
+            android:textSize="16sp"
+            android:gravity="fill"
+            />
+        <EditText
+            android:id="@+id/lid_idInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/idTag"
+            android:layout_alignParentRight="true"
+            android:minHeight="48dp"
+            android:hint="Enter id number"
+            android:inputType="phone"
+            />
+        <TextView
+            android:id="@+id/nameTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTag"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@id/lid_nameInput"
+            android:layout_alignBottom="@id/lid_nameInput"
+            android:text="Name:"
+            android:textSize="16sp"
+            android:gravity="fill"
+            />
+        <EditText
+            android:id="@+id/lid_nameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/nameTag"
+            android:layout_below="@id/lid_idInput"
+            android:layout_alignParentRight="true"
+            android:minHeight="48dp"
+            android:hint="Enter name"
+            />
+        <TextView
+            android:id="@+id/telTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameTag"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@id/lid_telInput"
+            android:layout_alignBottom="@id/lid_telInput"
+            android:text="Tel:"
+            android:textSize="16sp"
+            android:gravity="fill"
+            />
+        <EditText
+            android:id="@+id/lid_telInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lid_nameInput"
+            android:layout_toRightOf="@id/telTag"
+            android:layout_alignParentRight="true"
+            android:minHeight="48dp"
+            android:hint="Enter tel"
+            android:inputType="phone"
+            />
+        <TextView
+            android:id="@+id/birthdayTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/telTag"
+            android:layout_alignParentLeft="true"
+            android:text="Birthday:"
+            android:textSize="16sp"
+            android:minHeight="48dp"
+            android:gravity="fill"
+            />
+        <TextView
+            android:id="@+id/lid_birthdayInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lid_telInput"
+            android:layout_toRightOf="@id/birthdayTag"
+            android:layout_alignParentRight="true"
+            android:minHeight="48dp"
+            android:text="Touch to select date"
+            android:textSize="16sp"
+            android:gravity="fill"
+            android:onClick="selectDateFun"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Insert"
+            android:layout_margin="3dp"
+            android:onClick="insertFun"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:layout_margin="3dp"
+            android:onClick="updateFun"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_margin="3dp"
+            android:onClick="deleteFun"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#999"/>
+  </LinearLayout>
