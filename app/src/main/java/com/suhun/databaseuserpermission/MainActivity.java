@@ -103,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deleteFun(View view){
-        execQuery();
+        String dId = id.getText().toString();
+        if(!dId.equals("") && !dId.equals("Enter id number")){
+            db.delete("cust", "cid = ?", new String[]{dId});
+            execQuery();
+        }
     }
 }
