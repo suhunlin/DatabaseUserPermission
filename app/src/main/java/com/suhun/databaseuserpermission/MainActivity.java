@@ -3,6 +3,8 @@ package com.suhun.databaseuserpermission;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -13,20 +15,26 @@ public class MainActivity extends AppCompatActivity {
     private String tag = MainActivity.class.getSimpleName();
     private TextView result, birthday;
     private EditText id, name, tel;
+    private MySQLiteOpenHelper mySQLiteOpenHelper;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        initDatabase();
     }
-
     private void initView(){
         result = findViewById(R.id.lid_resultLog);
         id = findViewById(R.id.lid_idInput);
         name = findViewById(R.id.lid_nameInput);
         tel = findViewById(R.id.lid_telInput);
         birthday = findViewById(R.id.lid_birthdayInput);
+    }
+    private void initDatabase(){
+        mySQLiteOpenHelper = new MySQLiteOpenHelper(this, "suhunDB", null, 1);
+        db = mySQLiteOpenHelper.getWritableDatabase();
     }
 
     public void selectDateFun(View view){
