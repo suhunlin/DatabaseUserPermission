@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private String tag = MainActivity.class.getSimpleName();
-    private TextView result, birthday;
+    private TextView result, birthday, fieldName;
     private EditText id, name, tel;
     private MySQLiteOpenHelper mySQLiteOpenHelper;
     private SQLiteDatabase db;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         name = findViewById(R.id.lid_nameInput);
         tel = findViewById(R.id.lid_telInput);
         birthday = findViewById(R.id.lid_birthdayInput);
+        fieldName = findViewById(R.id.lid_fieldName);
     }
     private void initDatabase(){
         mySQLiteOpenHelper = new MySQLiteOpenHelper(this, "suhunDB", null, 1);
@@ -108,5 +109,13 @@ public class MainActivity extends AppCompatActivity {
             db.delete("cust", "cid = ?", new String[]{dId});
             execQuery();
         }
+    }
+
+    public void checkUserPermissionFun(View view){
+
+    }
+
+    public void getFieldNameFun(View view){
+
     }
 }

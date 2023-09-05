@@ -168,4 +168,25 @@
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="#999"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check User Permission"
+        android:textAllCaps="false"
+        android:onClick="checkUserPermissionFun"
+        />
+    <TextView
+        android:id="@+id/lid_fieldName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Null"
+        android:textSize="16sp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Field Name"
+        android:textAllCaps="false"
+        android:onClick="getFieldNameFun"
+        />
   </LinearLayout>
