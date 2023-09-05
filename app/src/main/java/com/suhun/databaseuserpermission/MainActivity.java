@@ -1,13 +1,20 @@
 package com.suhun.databaseuserpermission;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -19,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText id, name, tel;
     private MySQLiteOpenHelper mySQLiteOpenHelper;
     private SQLiteDatabase db;
+    private ContentResolver contentResolver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,10 +120,50 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkUserPermissionFun(View view){
+        if(userAgreePermission()){
+            initContentResolver();
+        }else{
+            requestPermissions(new String[]{Manifest.permission.READ_CALL_LOG, Manifest.permission.READ_CONTACTS,
+            Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
+        }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 123){
+            if(grantResults[0]==PackageManager.PERMISSION_GRANTED && grantResults[1]==PackageManager.PERMISSION_GRANTED
+            /*&& grantResults[2]==PackageManager.PERMISSION_GRANTED*/){
+                initContentResolver();
+            }else{
+                finish();
+            }
+        }
     }
 
     public void getFieldNameFun(View view){
+        if(contentResolver!=null) {
+            Uri uri = Settings.System.CONTENT_URI;
+            StringBuffer stringBuffer = new StringBuffer();
+            Cursor cursor = contentResolver.query(uri, null, null, null);
+            for (int i = 0; i < cursor.getColumnCount(); i++) {
+                stringBuffer.append(cursor.getColumnName(i) + "\n");
+            }
+            fieldName.setText(stringBuffer);
+        }
+    }
 
+    private boolean userAgreePermission(){
+        boolean result = false;
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+            result = true;
+        }
+        return result;
+    }
+
+    private void initContentResolver(){
+        contentResolver = getContentResolver();
     }
 }
