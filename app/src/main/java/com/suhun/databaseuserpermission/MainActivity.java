@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             String cname = cursor.getString(cursor.getColumnIndexOrThrow("cname"));
             String ctel = cursor.getString(cursor.getColumnIndexOrThrow("ctel"));
             String cbirthday = cursor.getString(cursor.getColumnIndexOrThrow("cbirthday"));
-            String cResult = String.format("%s:%s:%s:%s", cid, cname, ctel, cbirthday);
+            String cResult = String.format("%s:%s:%s:%s\n", cid, cname, ctel, cbirthday);
             stringBuffer.append(cResult);
         }
         result.setText(stringBuffer);
@@ -74,6 +74,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateFun(View view){
+        //uid->update id
+        String uId = id.getText().toString();
+        String uname = name.getText().toString();
+        String utel = tel.getText().toString();
+        String ubirthday = birthday.getText().toString();
+        if(!uId.equals("") || !uId.equals("Enter id number")){
+            ContentValues values = new ContentValues();
+            //update name
+            if(!uname.equals("") && !uname.equals("Enter name")){
+                values.put("cname", uname);
+            }
+            //update tel
+            if(!utel.equals("") && !utel.equals("Enter tel")){
+                values.put("ctel", utel);
+            }
+            //update birthday
+            if(!ubirthday.equals("") && !ubirthday.equals("Touch to select date")){
+                values.put("cbirthday", ubirthday);
+            }
+            db.update("cust", values, "cid = ?", new String[]{uId});
+        }
         execQuery();
     }
 
