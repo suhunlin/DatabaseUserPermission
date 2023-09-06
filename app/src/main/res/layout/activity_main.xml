@@ -189,4 +189,18 @@
         android:textAllCaps="false"
         android:onClick="getFieldNameFun"
         />
+    <TextView
+        android:id="@+id/lid_fieldResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Null"
+        android:textSize="16sp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Field Result"
+        android:textAllCaps="false"
+        android:onClick="getFieldResultFun"
+        />
   </LinearLayout>

@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private String tag = MainActivity.class.getSimpleName();
-    private TextView result, birthday, fieldName;
+    private TextView result, birthday, fieldName, fieldresult;
     private EditText id, name, tel;
     private MySQLiteOpenHelper mySQLiteOpenHelper;
     private SQLiteDatabase db;
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         tel = findViewById(R.id.lid_telInput);
         birthday = findViewById(R.id.lid_birthdayInput);
         fieldName = findViewById(R.id.lid_fieldName);
+        fieldresult = findViewById(R.id.lid_fieldResult);
     }
     private void initDatabase(){
         mySQLiteOpenHelper = new MySQLiteOpenHelper(this, "suhunDB", null, 1);
@@ -146,8 +147,11 @@ public class MainActivity extends AppCompatActivity {
             Uri uri = Settings.System.CONTENT_URI;
             StringBuffer stringBuffer = new StringBuffer();
             Cursor cursor = contentResolver.query(uri, null, null, null);
+
             for (int i = 0; i < cursor.getColumnCount(); i++) {
                 stringBuffer.append(cursor.getColumnName(i) + "\n");
+                if(i>0 && i<cursor.getColumnCount()-1){
+                }
             }
             fieldName.setText(stringBuffer);
         }
@@ -165,5 +169,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void initContentResolver(){
         contentResolver = getContentResolver();
+    }
+
+    public void getFieldResultFun(View view) {
+        StringBuffer stringBuffer = new StringBuffer();
+        Uri uri = Settings.System.CONTENT_URI;
+        Cursor cursor = contentResolver.query(uri, null, null, null, null);
+
+        while (cursor.moveToNext()){
+            String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+            String value = cursor.getString(cursor.getColumnIndexOrThrow("value"));
+            stringBuffer.append(String.format("%s:%s\n", name, value));
+        }
+        fieldresult.setText(stringBuffer);
     }
 }
