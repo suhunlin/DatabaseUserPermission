@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             stringBuffer.append(cResult);
         }
         result.setText(stringBuffer);
+        cursor.close();
     }
 
     public void queryFun(View view){
@@ -154,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             fieldName.setText(stringBuffer);
+            cursor.close();
         }
     }
 
